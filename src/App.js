@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <div>
         <p>Ejercicio 1: Busqueda de elementos en una lista</p> 
-        Search: <input name="query" type="text" onChange={handleSearch}/>
+          <input name="query" type="text" onChange={handleSearch} placeholder='Search...'/>
       </div>
       <ul>
       {filterList && filterList.map((item,index) =>(
