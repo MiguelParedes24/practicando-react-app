@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React,{ useState } from 'react';
 import './App.css';
 
 function App() {
+  const list = ["Banana", "Apple", "Orange", "Mango","Watermelon"];
+  const [filterList, setFilterList] = useState(list);
+
+  const handleSearch =  (event)=>{
+    if (event.target.value ==="") {
+      setFilterList(list);
+      return;
+    }
+      const filteredValues = list.filter(
+        (item) => item.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+      );
+      setFilterList(filteredValues);
+    };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <p>Ejercicio 1: Busqueda de elementos en una lista</p> 
+        Search: <input name="query" type="text" onChange={handleSearch}/>
+      </div>
+      <ul>
+      {filterList && filterList.map((item,index) =>(
+        <li key={index}>{item}</li>
+      ))}
+      </ul>
     </div>
   );
 }
